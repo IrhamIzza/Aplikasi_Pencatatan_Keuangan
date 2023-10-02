@@ -48,7 +48,7 @@ class DatabaseHelper {
           transaction_date TEXT,
           amount INT,
           description TEXT,
-          transaction_type TEXT,
+          transaction_type TEXT
         )
       ''');
 
