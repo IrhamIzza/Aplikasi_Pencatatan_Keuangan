@@ -7,7 +7,7 @@ class pemasukanTransaksi extends StatefulWidget {
   final String username;
 
   pemasukanTransaksi({required this.username});
-  
+
   @override
   pemasukanTransaksiState createState() => pemasukanTransaksiState();
 }
@@ -39,78 +39,88 @@ class pemasukanTransaksiState extends State<pemasukanTransaksi> {
       appBar: AppBar(
         title: Text('Tambah Transaksi'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    controller: dateController,
-                    decoration: InputDecoration(labelText: 'Tanggal'),
-                    enabled: false, // Agar tidak dapat diedit secara manual
+      body: Container(
+        color: Colors.grey,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: dateController,
+                      decoration: InputDecoration(labelText: 'Tanggal'),
+                      enabled: false, // Agar tidak dapat diedit secara manual
+                    ),
                   ),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    _selectDate(context);
-                  },
-                  child: Text('Pilih Tanggal'),
-                ),
-              ],
-            ),
-            TextField(
-              controller: nominalController,
-              decoration: InputDecoration(labelText: 'Nominal'),
-              keyboardType: TextInputType.number,
-            ),
-            TextField(
-              controller: keteranganController,
-              decoration: InputDecoration(labelText: 'Keterangan'),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () async {
-                final nominal = double.parse(nominalController.text);
-                final date = dateController.text;
-                final keterangan = keteranganController.text;
-
-                // Memanggil metode saveTransaction untuk menyimpan transaksi
-                await dbHelper.saveTransaction(
-                  widget.username,
-                  date,
-                  nominal,
-                  keterangan,
-                  'Pemasukan', // Ganti dengan jenis transaksi yang sesuai
-                );
-
-                // Navigasi kembali ke halaman beranda setelah transaksi disimpan
-                final userData = await dbHelper.getUserData(widget.username);
+                  ElevatedButton(
+                    onPressed: () {
+                      _selectDate(context);
+                    },
+                    child: Text('Pilih Tanggal'),
+                  ),
+                ],
+              ),
+              TextField(
+                controller: nominalController,
+                decoration: InputDecoration(labelText: 'Nominal'),
+                keyboardType: TextInputType.number,
+              ),
+              TextField(
+                controller: keteranganController,
+                decoration: InputDecoration(labelText: 'Keterangan'),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () async {
+                  final nominal = double.parse(nominalController.text);
+                  final date = dateController.text;
+                  final keterangan = keteranganController.text;
+      
+                  // Memanggil metode saveTransaction untuk menyimpan transaksi
+                  await dbHelper.saveTransaction(
+                    widget.username,
+                    date,
+                    nominal,
+                    keterangan,
+                    'Pemasukan', // Ganti dengan jenis transaksi yang sesuai
+                  );
+      
+                  // Navigasi kembali ke halaman beranda setelah transaksi disimpan
+                  final userData = await dbHelper.getUserData(widget.username);
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                       builder: (context) => HomePage(userData),
                     ),
                   );
-              },
-              child: Text('Simpan'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                dateController.text = '01/01/2021';
-                keteranganController.text="";
-                nominalController.text="";
-              },
-              child: Text('Reset'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text('Kembali'),
-            ),
-          ],
+      
+                  // Navigator.pushReplacementNamed(
+                  //   context,
+                  //   '/home', // Gantilah dengan nama rute Anda
+                  //   arguments:
+                  //       userData, // Jika Anda ingin melewatkan data ke halaman berikutnya
+                  // );
+                },
+                child: Text('Simpan'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  dateController.text = '01/01/2021';
+                  keteranganController.text = "";
+                  nominalController.text = "";
+                },
+                child: Text('Reset'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text('Kembali'),
+              ),
+            ],
+          ),
         ),
       ),
     );

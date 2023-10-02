@@ -149,4 +149,14 @@ class DatabaseHelper {
     final dbClient = await db;
     return await dbClient.rawDelete('DELETE FROM transactions');
   }
+
+  Future<List<Map<String, dynamic>>> getDailyIncome(String username) async {
+    final dbClient = await db;
+    return await dbClient.rawQuery(
+      'SELECT DATE(transaction_date) AS date, SUM(amount) AS income FROM transactions '
+      'WHERE username = ? AND transaction_type = ? '
+      'GROUP BY date ORDER BY date ASC',
+      [username, 'Pemasukan'],
+    );
+  }
 }

@@ -18,54 +18,108 @@ class pengaturanPageState extends State<pengaturanPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text('Ganti Password'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            TextField(
-              controller: currentPasswordController,
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: 'Password Saat Ini',
+      body: Container(
+        color: Colors.grey,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            // mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              TextField(
+                controller: currentPasswordController,
+                obscureText: true,
+                decoration: InputDecoration(
+                  labelText: 'Password Saat Ini',
+                ),
               ),
-            ),
-            SizedBox(height: 16),
-            TextField(
-              controller: newPasswordController,
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: 'Password Baru',
+              SizedBox(height: 16),
+              TextField(
+                controller: newPasswordController,
+                obscureText: true,
+                decoration: InputDecoration(
+                  labelText: 'Password Baru',
+                ),
               ),
-            ),
-            SizedBox(height: 32),
-            ElevatedButton(
-              onPressed: () async {
-                final currentPassword = currentPasswordController.text;
-                final newPassword = newPasswordController.text;
-                final isPasswordCorrect =
-                    await dbHelper.login(widget.username, currentPassword);
-                if (isPasswordCorrect) {
-                  await dbHelper.changePassword(widget.username, newPassword);
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text('Password berhasil diganti.'),
-                    duration: Duration(seconds: 2),
-                    behavior: SnackBarBehavior.floating,
-                  ));
-                } else {
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text('Password saat ini salah.'),
-                    duration: Duration(seconds: 2),
-                    behavior: SnackBarBehavior.floating,
-                  ));
-                }
-              },
-              child: Text('Simpan'),
-            ),
-          ],
+              SizedBox(height: 32),
+              ElevatedButton(
+                onPressed: () async {
+                  final currentPassword = currentPasswordController.text;
+                  final newPassword = newPasswordController.text;
+                  final isPasswordCorrect =
+                      await dbHelper.login(widget.username, currentPassword);
+                  if (isPasswordCorrect) {
+                    await dbHelper.changePassword(widget.username, newPassword);
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text('Password berhasil diganti.'),
+                      duration: Duration(seconds: 2),
+                      behavior: SnackBarBehavior.floating,
+                    ));
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text('Password saat ini salah.'),
+                      duration: Duration(seconds: 2),
+                      behavior: SnackBarBehavior.floating,
+                    ));
+                  }
+                },
+                child: Text('Simpan'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text('Kembali'),
+              ),
+              SizedBox(
+                height: 200,
+              ),
+              Row(
+                // crossAxisCount: 2,
+                // shrinkWrap: true,
+                children:[
+                  Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Color.fromARGB(255, 255, 255, 255), // Warna border
+                        width: 2.0, // Lebar border
+                      ),
+                    ),
+                    child: Image(
+                      width: 120,
+                      image: AssetImage(
+                          'images/obito.jpeg'), // Ganti dengan path gambar Anda
+                    ),
+                  ),
+                  SizedBox(width: 4,),
+                  Column(
+                    children: [
+                      Text(
+                        'About this App..',
+                        style:
+                            TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        'Aplikasi ini dibuat oleh :',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      Text(
+                        'Nama: Irham Izza Syany',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      Text(
+                        'NIM: 1941720129',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
