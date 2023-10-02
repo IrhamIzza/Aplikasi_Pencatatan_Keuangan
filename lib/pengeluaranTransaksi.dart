@@ -36,6 +36,7 @@ class pengeluaranTransaksiState extends State<pengeluaranTransaksi> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text('Tambah Transaksi'),
       ),

@@ -21,6 +21,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Text('Home Page'),
@@ -66,7 +67,7 @@ class _HomePageState extends State<HomePage> {
               //       dbHelper.deleteAllTransactions();
               //     },
               //     child: Text("hapus")),
-              SizedBox(height: 20),
+              SizedBox(height: 5),
               Text('Grafik Pemasukan dan Pengeluaran per Hari:'),
               Container(
                 width: 300,
