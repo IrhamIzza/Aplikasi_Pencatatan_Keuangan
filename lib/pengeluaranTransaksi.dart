@@ -41,7 +41,7 @@ class pengeluaranTransaksiState extends State<pengeluaranTransaksi> {
         title: Text('Tambah Transaksi'),
       ),
       body: Container(
-        color: Colors.grey,
+        color: Colors.white,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(

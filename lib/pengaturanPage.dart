@@ -23,7 +23,7 @@ class pengaturanPageState extends State<pengaturanPage> {
         title: Text('Ganti Password'),
       ),
       body: Container(
-        color: Colors.grey,
+        color: Colors.white,
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -44,7 +44,7 @@ class pengaturanPageState extends State<pengaturanPage> {
                   labelText: 'Password Baru',
                 ),
               ),
-              SizedBox(height: 32),
+              SizedBox(height: 25),
               ElevatedButton(
                 onPressed: () async {
                   final currentPassword = currentPasswordController.text;
@@ -84,7 +84,7 @@ class pengaturanPageState extends State<pengaturanPage> {
                   Container(
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: Color.fromARGB(255, 255, 255, 255), // Warna border
+                        color: Colors.grey, // Warna border
                         width: 2.0, // Lebar border
                       ),
                     ),

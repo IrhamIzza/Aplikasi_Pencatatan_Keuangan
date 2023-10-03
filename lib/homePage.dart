@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
         title: Text('Home Page'),
       ),
       body: Container(
-        color: Colors.grey,
+        color: Colors.white,
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -99,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                           FlSpot(7, 80),
                         ],
                         isCurved: true,
-                        colors: [Color.fromARGB(255, 255, 255, 255)],
+                        colors: [Color.fromARGB(255, 0, 0, 0)],
                         dotData: FlDotData(show: false),
                         belowBarData: BarAreaData(show: false),
                       ),
@@ -189,7 +189,7 @@ class MyImageButton extends StatelessWidget {
         onTap();
       },
       style: ButtonStyle(
-        backgroundColor: MaterialStatePropertyAll(Colors.grey),
+        backgroundColor: MaterialStatePropertyAll(Colors.white),
       ),
       child: Column(children: [
         Image.asset(imageUrl),
@@ -201,23 +201,23 @@ class MyImageButton extends StatelessWidget {
     );
   }
  }
-  List<FlSpot> _getSpots(List<Map<String, dynamic>> data) {
-    final spots = <FlSpot>[];
-    for (var i = 0; i < data.length; i++) {
-      final income = data[i]['income'] as int;
-      spots.add(FlSpot(i.toDouble(), income.toDouble())); // Cast to double
-    }
-    return spots;
-  }
+//   List<FlSpot> _getSpots(List<Map<String, dynamic>> data) {
+//     final spots = <FlSpot>[];
+//     for (var i = 0; i < data.length; i++) {
+//       final income = data[i]['income'] as int;
+//       spots.add(FlSpot(i.toDouble(), income.toDouble())); // Cast to double
+//     }
+//     return spots;
+//   }
 
-double _getMaxIncome(List<Map<String, dynamic>> data) {
-  double maxIncome = 0;
-  for (var i = 0; i < data.length; i++) {
-    final income = data[i]['income'] as int;
-    if (income > maxIncome) {
-      maxIncome = income.toDouble();
-    }
-  }
-  return maxIncome;
-}
+// double _getMaxIncome(List<Map<String, dynamic>> data) {
+//   double maxIncome = 0;
+//   for (var i = 0; i < data.length; i++) {
+//     final income = data[i]['income'] as int;
+//     if (income > maxIncome) {
+//       maxIncome = income.toDouble();
+//     }
+//   }
+//   return maxIncome;
+// }
 

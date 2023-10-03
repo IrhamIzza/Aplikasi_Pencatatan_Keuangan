@@ -34,9 +34,7 @@ class DatabaseHelper {
         CREATE TABLE IF NOT EXISTS users (
           id INTEGER PRIMARY KEY,
           username TEXT,
-          password TEXT,
-          total_pengeluaran REAL,
-          total_pemasukan REAL
+          password TEXT
         )
       ''');
 
@@ -54,8 +52,8 @@ class DatabaseHelper {
 
     // Insert beberapa data dummy
     await db.rawInsert('''
-      INSERT INTO users(username, password, total_pengeluaran, total_pemasukan)
-      VALUES('a', '1', 20000.0, 3000.0)
+      INSERT INTO users(username, password)
+      VALUES('user', 'user')
     ''');
 
   }

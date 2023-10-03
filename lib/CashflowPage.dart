@@ -19,7 +19,7 @@ class _CashflowPageState extends State<CashflowPage> {
         title: Text('Cash Flow'),
       ),
       body: Container(
-        color: Colors.grey,
+        color: Colors.white,
         child: FutureBuilder(
           future: dbHelper.getAllTransactions(widget.username), // Ganti dengan username pengguna yang sesuai
           builder: (context, snapshot) {
